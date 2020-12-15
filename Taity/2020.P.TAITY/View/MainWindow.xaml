@@ -14,6 +14,7 @@
         FontSize="15" Height="600" Width="1080" WindowStyle="None" AllowsTransparency="True" 
         WindowStartupLocation="CenterScreen"
         MouseDown="Window_MouseDown"
+        WindowState="{Binding CurWindowState, Mode=TwoWay}"
         Title="Финансы">
     <Window.DataContext>
         <ViewModel:MainViewModel/>
@@ -23,7 +24,7 @@
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Grid fw:PointerTracker.Enabled="True" Background="#01FFFFFF">
+        <Grid fw:PointerTracker.Enabled="True" Background="#03FFFFFF">
             <StackPanel>
                 <TextBlock Text="Финансы" Margin="10" FontWeight="DemiBold"/>
                 <ListViewItem Padding="0">
@@ -42,12 +43,23 @@
                     </ListViewItem>
                 </ListView>
             </StackPanel>
-            <ListViewItem Padding="0" VerticalAlignment="Bottom">
-                <StackPanel Orientation="Horizontal">
-                    <materialDesign:PackIcon Kind="Settings" Margin="15"/>
-                    <TextBlock Text="Настройки" VerticalAlignment="Center"/>
-                </StackPanel>
-            </ListViewItem>
+            <ListView VerticalAlignment="Bottom">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border>
+                            <Button Command="{Binding PageContent}" CommandParameter="{Binding}">
+                                <TextBlock Text="{Binding}" />
+                            </Button>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListViewItem Padding="0">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Settings" Margin="15"/>
+                        <TextBlock Text="Настройки" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </ListViewItem>
+            </ListView>
         </Grid>
         <Grid Grid.Column="1" Background="White">
             <Grid.RowDefinitions>
@@ -56,17 +68,17 @@
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
-                <Button Padding="0" Height="22" Width="22" Foreground="Gray" Background="#f8f9fa" BorderBrush="{x:Null}" materialDesign:ShadowAssist.ShadowDepth="Depth0">
+                <Button Command="{Binding Minimize}" Padding="0" Height="22" Width="22" Foreground="Gray" Background="#f8f9fa" BorderBrush="{x:Null}" materialDesign:ShadowAssist.ShadowDepth="Depth0">
                     <materialDesign:PackIcon Height="15" Width="15" Kind="WindowMinimize"/>
                 </Button>
-                <Button Padding="0" Height="22" Width="22" Foreground="Gray" Background="#f8f9fa" BorderBrush="{x:Null}" materialDesign:ShadowAssist.ShadowDepth="Depth0">
+                <Button Command="{Binding Maximize}" Padding="0" Height="22" Width="22" Foreground="Gray" Background="#f8f9fa" BorderBrush="{x:Null}" materialDesign:ShadowAssist.ShadowDepth="Depth0">
                     <materialDesign:PackIcon Height="15" Width="15" Kind="WindowMaximize" Foreground="Gray"/>
                 </Button>
-                <Button Command="{Binding ShutdownCommand}" Padding="0" Height="22" Width="26" Foreground="White" Background="Red" BorderBrush="{x:Null}" materialDesign:ShadowAssist.ShadowDepth="Depth0">
+                <Button Command="{Binding Shutdown}" Padding="0" Height="22" Width="26" Foreground="White" Background="Red" BorderBrush="{x:Null}" materialDesign:ShadowAssist.ShadowDepth="Depth0">
                     <materialDesign:PackIcon Height="15" Width="15" Kind="WindowClose"/>
                 </Button>
             </StackPanel>
-            <Frame Grid.Row="1"/>
+            <Frame Grid.Row="1" x:Name="Page" NavigationUIVisibility="Hidden" Source="{Binding PageContent}"/>
         </Grid>
     </Grid>
 </Window>
