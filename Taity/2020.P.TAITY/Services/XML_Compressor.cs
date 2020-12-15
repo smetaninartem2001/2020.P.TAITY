@@ -1,46 +1,80 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows;
 using System.Xml.Serialization;
+using _2020.P.TAITY.Model;
 
 namespace _2020.P.TAITY.Services
 {
     class XML_Compressor
     {
         [Serializable]
-        public class History
+        public class XSpace
         {
             /// <summary>
-            /// Сохранение неких параметров в формате XML
+            /// Сериализация коллкций в XML формат
             /// </summary>
-            /// <param name="list">Коллекция параметров</param>
-            public void Save(List<History> list)
+            /// <param name="collection">Коллекция</param>
+            public void Serializ(FileOfProgram fileOf, List<XSpace> collection)
             {
-                XmlSerializer xser = new XmlSerializer(typeof(List<History>));
-                using (FileStream fs = new FileStream("Settings.xml", FileMode.Create))
+                XmlSerializer xs = new XmlSerializer(typeof(List<XSpace>));
+                using (FileStream fs = new FileStream($"{fileOf}.xml", FileMode.Create))
                 {
-                    xser.Serialize(fs, list);
+                    xs.Serialize(fs, collection);
                 }
             }
 
             /// <summary>
-            /// Десериализация некой структуры XML формата в коллекцию
+            /// Сериализация объектов в XML формат
             /// </summary>
-            /// <returns>Коллекция <T> List</returns>
-            public List<History> Deserialize()
+            /// <param name="line">Строковый параметр</param>
+            public void Serializ(FileOfProgram fileOf, String line)
             {
-                XmlSerializer xser = new XmlSerializer(typeof(List<History>));
-                using (FileStream fs = new FileStream("Settings.xml", FileMode.OpenOrCreate))
+                XmlSerializer xs = new XmlSerializer(typeof(String));
+                using (FileStream fs = new FileStream($"{fileOf}.xml", FileMode.Create))
+                {
+                    xs.Serialize(fs, line);
+                }
+            }
+
+            /// <summary>
+            /// Десериализация структуры из XML формата
+            /// </summary>
+            /// <param name="fileOf">Перечесление типов хранимых файлов</param>
+            /// <returns>Коллекция <T> List</returns>
+            public List<XSpace> Deserialize(FileOfProgram fileOf)
+            {
+                XmlSerializer xs = new XmlSerializer(typeof(List<XSpace>));
+                using (FileStream fs = new FileStream($"{fileOf}.xml", FileMode.OpenOrCreate))
                 {
                     try
                     {
-                        return (List<History>)xser.Deserialize(fs);
+                        return (List<XSpace>)xs.Deserialize(fs);
                     }
-                    catch (Exception e)
+                    catch
                     {
-                        MessageBox.Show(e.ToString());
-                        return new List<History>();
+                        return new List<XSpace>();
+                    }
+                }
+            }
+
+            /// <summary>
+            /// Десериализация структуры из XML формата
+            /// </summary>
+            /// <param name="fileOf">Перечесление типов хранимых файлов</param>
+            /// <returns>Строковое значение</returns>
+            public String Deserialize_line(FileOfProgram fileOf)
+            {
+                XmlSerializer xs = new XmlSerializer(typeof(String));
+                using (FileStream fs = new FileStream($"{fileOf}.xml", FileMode.OpenOrCreate))
+                {
+                    try
+                    {
+                        return (String)xs.Deserialize(fs);
+                    }
+                    catch
+                    {
+                        return null;
                     }
                 }
             }

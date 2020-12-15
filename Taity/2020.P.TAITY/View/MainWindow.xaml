@@ -6,14 +6,18 @@
         xmlns:local="clr-namespace:_2020.P.TAITY.View"
         xmlns:ViewModel="clr-namespace:_2020.P.TAITY.ViewModel"
         mc:Ignorable="d"
+        MinHeight="450" MinWidth="720"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         fw:AcrylicWindow.Enabled="True" 
         fw:AcrylicWindow.AcrylicWindowStyle="None"
         FontSize="15" Height="600" Width="1080" WindowStyle="None" AllowsTransparency="True" 
-        ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        WindowStartupLocation="CenterScreen"
         MouseDown="Window_MouseDown"
         Title="Финансы">
+    <Window.DataContext>
+        <ViewModel:MainViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"/>
@@ -32,48 +36,37 @@
                 <ListView FontSize="15">
                     <ListViewItem Padding="1">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Monitor" Margin="15"/>
-                            <TextBlock Text="Video" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem Padding="1">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Headphones" Margin="15"/>
-                            <TextBlock Text="Audio" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem Padding="1">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="MessageOutline" Margin="15"/>
-                            <TextBlock Text="Notifications" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </ListViewItem>
-                    <ListViewItem Padding="1">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="BatteryOutline" Margin="15"/>
-                            <TextBlock Text="Battery" VerticalAlignment="Center"/>
+                            <materialDesign:PackIcon Kind="Calculator" Margin="15"/>
+                            <TextBlock Text="Калькулятор" VerticalAlignment="Center"/>
                         </StackPanel>
                     </ListViewItem>
                 </ListView>
             </StackPanel>
+            <ListViewItem Padding="0" VerticalAlignment="Bottom">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="Settings" Margin="15"/>
+                    <TextBlock Text="Настройки" VerticalAlignment="Center"/>
+                </StackPanel>
+            </ListViewItem>
         </Grid>
         <Grid Grid.Column="1" Background="White">
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="23"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
-            <!--Переделать эти кнопки во что-то нормальное-->
             <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
-                <Button Padding="0" Margin="4" Height="15" Width="15" Foreground="Green" Background="{x:Null}"  BorderBrush="{x:Null}">
-                    <materialDesign:PackIcon Height="15" Width="15" Kind="Circle"/>
+                <Button Padding="0" Height="22" Width="22" Foreground="Gray" Background="#f8f9fa" BorderBrush="{x:Null}" materialDesign:ShadowAssist.ShadowDepth="Depth0">
+                    <materialDesign:PackIcon Height="15" Width="15" Kind="WindowMinimize"/>
                 </Button>
-                <Button Padding="0" Margin="4" Height="15" Width="15" Foreground="#faed14" Background="{x:Null}" BorderBrush="{x:Null}">
-                    <materialDesign:PackIcon Height="15" Width="15" Kind="Circle"/>
+                <Button Padding="0" Height="22" Width="22" Foreground="Gray" Background="#f8f9fa" BorderBrush="{x:Null}" materialDesign:ShadowAssist.ShadowDepth="Depth0">
+                    <materialDesign:PackIcon Height="15" Width="15" Kind="WindowMaximize" Foreground="Gray"/>
                 </Button>
-                <Button Padding="0" Margin="4" Height="15" Width="15" Foreground="Red" Background="{x:Null}" BorderBrush="{x:Null}">
-                    <materialDesign:PackIcon Height="15" Width="15" Kind="Circle"/>
+                <Button Command="{Binding ShutdownCommand}" Padding="0" Height="22" Width="26" Foreground="White" Background="Red" BorderBrush="{x:Null}" materialDesign:ShadowAssist.ShadowDepth="Depth0">
+                    <materialDesign:PackIcon Height="15" Width="15" Kind="WindowClose"/>
                 </Button>
             </StackPanel>
+            <Frame Grid.Row="1"/>
         </Grid>
     </Grid>
 </Window>

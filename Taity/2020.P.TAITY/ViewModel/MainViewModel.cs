@@ -1,7 +1,7 @@
-﻿using _2020.P.TAITY.View;
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Input;
+using _2020.P.TAITY.Service;
 
 namespace _2020.P.TAITY.ViewModel
 {
@@ -22,7 +22,10 @@ namespace _2020.P.TAITY.ViewModel
         /// </summary>
         public MainViewModel()
         {
-            
+            ShutdownCommand = new DelegateCommand(delegate
+            {
+                Environment.Exit(1);
+            });
         }
     }
 }

@@ -70,6 +70,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Model\Enumerations.cs" />
     <Compile Include="Services\DelegateCommand.cs" />
     <Compile Include="Services\XML_Compressor.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
@@ -105,9 +106,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Page Include="Style\Button.xaml">
       <Generator>MSBuild:Compile</Generator>
