@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Input;
 
 namespace _2020.P.TAITY.Service
@@ -8,8 +9,16 @@ namespace _2020.P.TAITY.Service
     /// </summary>
     public class DelegateCommand : ICommand
     {
+
+
+        #region Fields
+
         public Action<object> execute; //Передаваемое событие
         public Predicate<object> can_execute; //Возможность выполнения этого события
+
+        #endregion
+
+        #region Constructors
 
         /// <summary>
         /// Передача параметров во внутреннюю среду
@@ -28,6 +37,11 @@ namespace _2020.P.TAITY.Service
         /// <param name="_execute"></param>
         public DelegateCommand(Action<object> _execute) : this(_execute, null) { }
 
+        #endregion
+
+
+        #region ICommand Implementation
+
         /// <summary>
         /// Событие добавления или удаления метода из общего реестра команд при делегировании
         /// </summary>
@@ -42,6 +56,7 @@ namespace _2020.P.TAITY.Service
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
+        [DebuggerStepThrough]
         public bool CanExecute(object parameter)
         {
             return can_execute == null ? true : can_execute.Invoke(parameter);
@@ -55,5 +70,6 @@ namespace _2020.P.TAITY.Service
         {
             execute.Invoke(parameter);
         }
+        #endregion
     }
 }

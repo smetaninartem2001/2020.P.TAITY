@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:_2020.P.TAITY.View"
         xmlns:ViewModel="clr-namespace:_2020.P.TAITY.ViewModel"
         mc:Ignorable="d"
-        MinHeight="450" MinWidth="720"
+        MinHeight="450" MinWidth="950"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         fw:AcrylicWindow.Enabled="True" 
@@ -16,9 +16,6 @@
         MouseDown="Window_MouseDown"
         WindowState="{Binding CurWindowState, Mode=TwoWay}"
         Title="Финансы">
-    <Window.DataContext>
-        <ViewModel:MainViewModel/>
-    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"/>
@@ -43,23 +40,11 @@
                     </ListViewItem>
                 </ListView>
             </StackPanel>
-            <ListView VerticalAlignment="Bottom">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Border>
-                            <Button Command="{Binding PageContent}" CommandParameter="{Binding}">
-                                <TextBlock Text="{Binding}" />
-                            </Button>
-                        </Border>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListViewItem Padding="0">
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Settings" Margin="15"/>
-                        <TextBlock Text="Настройки" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </ListViewItem>
-            </ListView>
+            <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                <Button Command="{Binding GoToPageSettingsCommand}" CommandParameter="{Binding PageSettingsViewModel}" Height="45" Width="45" Padding="0">
+                    <materialDesign:PackIcon Kind="Settings"/>
+                </Button>
+            </StackPanel>
         </Grid>
         <Grid Grid.Column="1" Background="White">
             <Grid.RowDefinitions>
@@ -78,7 +63,7 @@
                     <materialDesign:PackIcon Height="15" Width="15" Kind="WindowClose"/>
                 </Button>
             </StackPanel>
-            <Frame Grid.Row="1" x:Name="Page" NavigationUIVisibility="Hidden" Source="{Binding PageContent}"/>
+            <Frame Grid.Row="1" x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
         </Grid>
     </Grid>
 </Window>

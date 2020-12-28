@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
+using _2020.P.TAITY.Interfaces;
 using _2020.P.TAITY.Service;
-using _2020.P.TAITY.View.Pages;
+using _2020.P.TAITY.Services;
 
 namespace _2020.P.TAITY.ViewModel
 {
@@ -13,21 +15,42 @@ namespace _2020.P.TAITY.ViewModel
     /// </summary>
     class MainViewModel : BaseViewModel
     {
+
         //---------------------------------------------------------------------------------
-        //---ОБЛАСТЬ ПРИВАТНЫХ ПЕРМЕННЫХ---------------------------------------------------
+        //---ОБЛАСТЬ ПУБЛИЧНЫХ КОНСТАНТ----------------------------------------------------
         //---------------------------------------------------------------------------------
+        #region Public Constants
+
+        public static readonly string PageSettingsViewModelAlias = "PageSettingsVM";
+
+        public static readonly string NotFoundPageViewModelAlias = "404VM";
+
+        #endregion
 
 
+
+        //---------------------------------------------------------------------------------
+        //---ОБЛАСТЬ ПРИВАТНЫХ ПОЛЕЙ-------------------------------------------------------
+        //---------------------------------------------------------------------------------
+        #region Private Fields
+
+        private readonly IViewModelsResolver _resolver;
+
+        private ICommand _goToPageSettingsCommand;
+
+        private readonly INotifyPropertyChanged _pSettingsViewModel;
 
         private WindowState _curWindowState;
+
         private object _pageContent;
 
+        #endregion
 
 
         //---------------------------------------------------------------------------------
         //---ОБЛАСТЬ ОБЪЯВЛЕНИЯ КОМАНД-----------------------------------------------------
         //---------------------------------------------------------------------------------
-
+        #region Properties
 
 
         /// <summary>
@@ -48,8 +71,17 @@ namespace _2020.P.TAITY.ViewModel
         /// <summary>
         /// Команда подгрузки страницы настроек
         /// </summary>
-        public ICommand OpenSettingsPage { get; set; }
+        public ICommand GoToPageSettingsCommand
+        {
+            get { return _goToPageSettingsCommand; }
+            set
+            {
+                _goToPageSettingsCommand = value;
+                OnPropertyChanged("GoToPageSettingsCommand");
+            }
+        }
 
+        #endregion
 
 
         //---------------------------------------------------------------------------------
@@ -62,8 +94,10 @@ namespace _2020.P.TAITY.ViewModel
         /// Конструктор класса наследуемого от базовой модели
         /// Описывает команды для интрфейса и дочерних объектов
         /// </summary>
-        public MainViewModel()
+        public MainViewModel(IViewModelsResolver resolver)
         {
+            _resolver = resolver;
+
             Shutdown = new DelegateCommand(delegate
             {
                 if(System.Windows.Forms.MessageBox.Show("Вы уверены, что хотите завершить работу приложения?", "Внимание", MessageBoxButtons.YesNo).Equals(DialogResult.Yes))
@@ -83,12 +117,19 @@ namespace _2020.P.TAITY.ViewModel
                     CurWindowState = WindowState.Normal;
             });
 
-            OpenSettingsPage = new DelegateCommand(delegate
-            {
-                //PageContent = new Settings();
-            });
+            _pSettingsViewModel = _resolver.GetViewModelInstance(PageSettingsViewModelAlias);
+
+            InitializeCommands();
         }
 
+
+        private void InitializeCommands()
+        {
+
+            GoToPageSettingsCommand = new DelegateCommand(delegate {
+                Navigation.Navigate(Navigation.PageSettingsAlias, PageSettingsViewModelAlias);
+            });
+        }
 
 
         //---------------------------------------------------------------------------------

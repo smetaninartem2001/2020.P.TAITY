@@ -4,11 +4,64 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:_2020.P.TAITY.View.Pages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Settings">
-
-    <Grid>
-        <TextBlock>Тестовая зона</TextBlock>
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="1" Margin="15 45 10 15">
+            <TextBlock Padding="5" FontWeight="Normal" FontSize="14" TextWrapping="Wrap" Text="Настройте параметры безопасности ваших финансов под свои нужды или следуйте ркомендациям"/>
+            <Label Padding="5 0 0 0" Content="подробнее" FontSize="11" FontWeight="Bold" Foreground="#DDFF4343"/>
+        </StackPanel>
+        <Grid Grid.Column="0" Margin="15 45 10 15">
+            <ScrollViewer VerticalScrollBarVisibility="Visible" UseLayoutRounding="False" >
+                <StackPanel MaxWidth="470">
+                    <StackPanel>
+                        <TextBlock Padding="5" FontWeight="Bold" FontSize="18" TextWrapping="Wrap" Text="Настройки безопасности"/>
+                        <TextBlock Padding="5 10 15 5" HorizontalAlignment="Left" MaxWidth="500" FontWeight="Normal" FontSize="14" TextWrapping="Wrap" Text="Программа использует мощьные алгоритмы шифрования и обработки информации. Наша команда приложила все усилия, чтобы ваши данные были защищены соврменными средствами защиты информации."/>
+                        <Label Padding="5 0 0 0" Content="подробнее" FontWeight="Bold" FontSize="11" Foreground="#DDFF4343"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Padding="5 20 5 5" FontWeight="SemiBold" FontSize="16" TextWrapping="Wrap" Text="Резервная папка"/>
+                        <TextBlock Padding="5 10 15 5" HorizontalAlignment="Left" MaxWidth="500" FontWeight="Normal" FontSize="14" TextWrapping="Wrap" Text="Резервная папка предоставляет возможность сохранения данных для восстановления в случае сбоев программного обеспечения."/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="65"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Grid.Column="0" Height="35" IsEnabled="False"/>
+                            <Button Grid.Column="1" Background="White" BorderBrush="{x:Null}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Width="45" Padding="0">
+                                <materialDesign:PackIcon Kind="Folder"/>
+                            </Button>
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Padding="5 20 5 5" FontWeight="SemiBold" FontSize="16" TextWrapping="Wrap" Text="Шифрование данных"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="65"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock VerticalAlignment="Center" Padding="8" Text="RSA" HorizontalAlignment="Left" MaxWidth="500" FontWeight="Normal" FontSize="14" TextWrapping="Wrap"/>
+                                <TextBlock VerticalAlignment="Center" Padding="8" Text="Blowfish" HorizontalAlignment="Left" MaxWidth="500" FontWeight="Normal" FontSize="14" TextWrapping="Wrap"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="0">
+                                <Button Background="White" BorderBrush="{x:Null}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Padding="0">
+                                    <materialDesign:PackIcon Kind="Circle"/>
+                                </Button>
+                                <Button Background="White" BorderBrush="{x:Null}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Padding="0">
+                                    <materialDesign:PackIcon Kind="Circle"/>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </Page>
