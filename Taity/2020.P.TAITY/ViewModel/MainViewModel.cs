@@ -23,6 +23,8 @@ namespace _2020.P.TAITY.ViewModel
 
         public static readonly string PageSettingsViewModelAlias = "PageSettingsVM";
 
+        public static readonly string PageСalculatorViewModelAlias = "PageСalculatorVM";
+
         public static readonly string NotFoundPageViewModelAlias = "404VM";
 
         #endregion
@@ -38,7 +40,11 @@ namespace _2020.P.TAITY.ViewModel
 
         private ICommand _goToPageSettingsCommand;
 
+        private ICommand _goToPageСalculatorCommand;
+
         private readonly INotifyPropertyChanged _pSettingsViewModel;
+
+        private readonly INotifyPropertyChanged _pСalculatorViewModel;
 
         private WindowState _curWindowState;
 
@@ -81,6 +87,19 @@ namespace _2020.P.TAITY.ViewModel
             }
         }
 
+        /// <summary>
+        /// Команда подгрузки страницы калькулятора
+        /// </summary>
+        public ICommand GoToPageСalculatorCommand
+        {
+            get { return _goToPageСalculatorCommand; }
+            set
+            {
+                _goToPageСalculatorCommand = value;
+                OnPropertyChanged("GoToPageSettingsCommand");
+            }
+        }
+
         #endregion
 
 
@@ -119,6 +138,8 @@ namespace _2020.P.TAITY.ViewModel
 
             _pSettingsViewModel = _resolver.GetViewModelInstance(PageSettingsViewModelAlias);
 
+            _pSettingsViewModel = _resolver.GetViewModelInstance(PageСalculatorViewModelAlias);
+
             InitializeCommands();
         }
 
@@ -128,6 +149,10 @@ namespace _2020.P.TAITY.ViewModel
 
             GoToPageSettingsCommand = new DelegateCommand(delegate {
                 Navigation.Navigate(Navigation.PageSettingsAlias, PageSettingsViewModelAlias);
+            });
+
+            GoToPageСalculatorCommand = new DelegateCommand(delegate {
+                Navigation.Navigate(Navigation.PageСalculatorAlias, PageСalculatorViewModelAlias);
             });
         }
 

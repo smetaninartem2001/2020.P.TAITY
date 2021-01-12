@@ -13,6 +13,7 @@ namespace _2020.P.TAITY.ViewModel
         public ViewModelsResolver()
         {
             _vmResolvers.Add(MainViewModel.PageSettingsViewModelAlias, () => new PageSettingsViewModel());
+            _vmResolvers.Add(MainViewModel.PageСalculatorViewModelAlias, () => new PageСalculatorViewModel());
             _vmResolvers.Add(MainViewModel.NotFoundPageViewModelAlias, () => new Page404ViewModel());
         }
 

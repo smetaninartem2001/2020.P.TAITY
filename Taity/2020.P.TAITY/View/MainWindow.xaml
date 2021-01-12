@@ -33,16 +33,21 @@
                 <TextBlock Text="Основные" Margin="15" FontWeight="DemiBold"/>
                 <ListView FontSize="15">
                     <ListViewItem Padding="1">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Calculator" Margin="15"/>
-                            <TextBlock Text="Калькулятор" VerticalAlignment="Center"/>
-                        </StackPanel>
+                        <Hyperlink NavigateUri="{x:Null}" Command="{Binding GoToPageСalculatorCommand}" CommandParameter="{Binding PageСalculatorViewModel}" Foreground="Black">
+                            <StackPanel Orientation="Horizontal" >
+                                <materialDesign:PackIcon Kind="Calculator" Margin="15"/>
+                                <TextBlock Text="Калькулятор" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Hyperlink>
                     </ListViewItem>
                 </ListView>
             </StackPanel>
-            <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left">
+            <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Orientation="Horizontal">
                 <Button Command="{Binding GoToPageSettingsCommand}" CommandParameter="{Binding PageSettingsViewModel}" Height="45" Width="45" Padding="0">
                     <materialDesign:PackIcon Kind="Settings"/>
+                </Button>
+                <Button Command="{Binding GoToPageSettingsCommand}" CommandParameter="{Binding PageSettingsViewModel}" Height="45" Width="45" Padding="0">
+                    <materialDesign:PackIcon Kind="Support"/>
                 </Button>
             </StackPanel>
         </Grid>

@@ -85,9 +85,13 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Page404ViewModel.cs" />
     <Compile Include="ViewModel\PageSettingsViewModel.cs" />
+    <Compile Include="ViewModel\PageСalculatorViewModel.cs" />
     <Compile Include="ViewModel\ViewModelsResolver.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\Calculator.xaml.cs">
+      <DependentUpon>Calculator.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
@@ -131,6 +135,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\Calculator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

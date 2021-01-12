@@ -9,7 +9,8 @@ namespace _2020.P.TAITY.Services
     {
         #region Public Constants
 
-        public static readonly string PageSettingsAlias = "PageSettings";
+        public static readonly string PageSettingsAlias = "PageSettings"; //Сalculator
+        public static readonly string PageСalculatorAlias = "PageСalculator";
         public static readonly string NotFoundPageAlias = "404";
 
         #endregion

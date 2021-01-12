@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:_2020.P.TAITY.View.Pages"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1250" d:DesignWidth="800"
       Title="Settings">
     <Grid Background="White">
         <Grid.ColumnDefinitions>
@@ -18,7 +18,7 @@
             <Label Padding="5 0 0 0" Content="подробнее" FontSize="11" FontWeight="Bold" Foreground="#DDFF4343"/>
         </StackPanel>
         <Grid Grid.Column="0" Margin="15 45 10 15">
-            <ScrollViewer VerticalScrollBarVisibility="Visible" UseLayoutRounding="False" >
+            <ScrollViewer VerticalScrollBarVisibility="Visible" UseLayoutRounding="False" HorizontalAlignment="Left">
                 <StackPanel MaxWidth="470">
                     <StackPanel>
                         <TextBlock Padding="5" FontWeight="Bold" FontSize="18" TextWrapping="Wrap" Text="Настройки безопасности"/>
@@ -34,13 +34,20 @@
                                 <ColumnDefinition Width="65"/>
                             </Grid.ColumnDefinitions>
                             <TextBox Grid.Column="0" Height="35" IsEnabled="False"/>
-                            <Button Grid.Column="1" Background="White" BorderBrush="{x:Null}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Width="45" Padding="0">
+                            <Button Grid.Column="1" Background="#F8F8F8" BorderBrush="{x:Null}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Width="45" Padding="0">
                                 <materialDesign:PackIcon Kind="Folder"/>
                             </Button>
                         </Grid>
                     </StackPanel>
                     <StackPanel>
+                        <TextBlock Padding="5 20 5 5" FontWeight="SemiBold" FontSize="16" TextWrapping="Wrap" Text="Создание точек восстановления"/>
+                        <TextBlock Padding="5 10 15 5" HorizontalAlignment="Left" MaxWidth="500" FontWeight="Normal" FontSize="14" TextWrapping="Wrap" Text="Точка восстановления позволяет вам вернуть данные ваших расходов на определенный момент времени не более чем годом ранее (рекомендованно)."/>
+                        <Button Margin="5" Grid.Column="1" Content="Создать точку восстановления" Foreground="Red" HorizontalAlignment="Left" Background="#F8F8F8"  materialDesign:ShadowAssist.ShadowDepth="Depth0" Padding="5" FontWeight="Normal" FontSize="12" BorderBrush="{x:Null}"/>
+                        <TextBlock Padding="5 10 15 5" HorizontalAlignment="Left" MaxWidth="500" FontWeight="Normal" FontSize="14" TextWrapping="Wrap" Text="Точка восстановления создается автоматически после завершения работы приложения."/>
+                    </StackPanel>
+                    <StackPanel>
                         <TextBlock Padding="5 20 5 5" FontWeight="SemiBold" FontSize="16" TextWrapping="Wrap" Text="Шифрование данных"/>
+                        <TextBlock Padding="5 10 15 5" HorizontalAlignment="Left" MaxWidth="500" FontWeight="Normal" FontSize="14" TextWrapping="Wrap" Text="Функции шифрования позволяют защитить ваши данные банковских карт и финансовых расходов от злоумышленников и случайной передачи данных третьим лицам."/>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="65"/>
@@ -51,14 +58,21 @@
                                 <TextBlock VerticalAlignment="Center" Padding="8" Text="Blowfish" HorizontalAlignment="Left" MaxWidth="500" FontWeight="Normal" FontSize="14" TextWrapping="Wrap"/>
                             </StackPanel>
                             <StackPanel Grid.Column="0">
-                                <Button Background="White" BorderBrush="{x:Null}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Padding="0">
+                                <Button Background="#F8F8F8" BorderBrush="{x:Null}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Padding="0">
                                     <materialDesign:PackIcon Kind="Circle"/>
                                 </Button>
-                                <Button Background="White" BorderBrush="{x:Null}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Padding="0">
+                                <Button Background="#F8F8F8" BorderBrush="{x:Null}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Padding="0">
                                     <materialDesign:PackIcon Kind="Circle"/>
                                 </Button>
                             </StackPanel>
                         </Grid>
+                        <StackPanel>
+                            <TextBlock Padding="5 20 5 5" FontWeight="Bold" FontSize="18" TextWrapping="Wrap" Text="Персонализация"/>
+                            <TextBlock Padding="5 10 15 5" HorizontalAlignment="Left" MaxWidth="500" FontWeight="Normal" FontSize="14" TextWrapping="Wrap" Text="В разделе персонализации представлены настройки для людей со сложностями восприятия стандартной цветовой схемы и другие настройки цвета приложения."/>
+                            <TextBlock Padding="5 20 5 5" FontWeight="Medium" FontSize="14" TextWrapping="Wrap" Text="Ночной режим"/>
+                            <TextBlock Padding="5 20 5 5" FontWeight="Medium" FontSize="14" TextWrapping="Wrap" Text="Режимы цветовой схемы"/>
+                            <TextBlock Padding="5 10 15 5" HorizontalAlignment="Left" MaxWidth="500" FontWeight="Normal" FontSize="14" TextWrapping="Wrap" Text="*Если у вас имеются проблемы с данным раздом, обратитесь в службу поддержки."/>
+                        </StackPanel>
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>

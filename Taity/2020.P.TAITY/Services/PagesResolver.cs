@@ -14,6 +14,7 @@ namespace _2020.P.TAITY.Services
         public PagesResolver()
         {
             _pagesResolvers.Add(Navigation.PageSettingsAlias, () => new Settings());
+            _pagesResolvers.Add(Navigation.PageСalculatorAlias, () => new Calculator()); 
         }
 
         public Page GetPageInstance(string alias)
